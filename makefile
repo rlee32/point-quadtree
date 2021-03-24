@@ -10,7 +10,8 @@ SRCS = example.cc \
     point_quadtree/box.cc \
     point_quadtree/domain.cc \
     point_quadtree/grid_position.cc \
-    point_quadtree/morton_keys.cc
+    point_quadtree/morton_keys.cc \
+    point_quadtree/node.cc
 
 %.o: %.cc; $(CXX) $(CXX_FLAGS) -o $@ -c $<
 
