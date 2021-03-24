@@ -10,13 +10,13 @@ namespace point_quadtree {
 class Domain {
 public:
     Domain(const std::vector<double>& x, const std::vector<double>& y);
-    auto xmin() const;
-    auto ymin() const;
-    auto xdim(int depth) const;
-    auto ydim(int depth) const;
+    double xmin() const;
+    double ymin() const;
+    double xdim(int depth) const;
+    double ydim(int depth) const;
 
-    const auto& x() const;
-    const auto& y() const;
+    const std::vector<double> &x() const;
+    const std::vector<double> &y() const;
 
 private:
     const std::vector<double>& m_x;

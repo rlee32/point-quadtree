@@ -33,16 +33,16 @@ Domain::Domain(const std::vector<double>& x, const std::vector<double>& y)
     }
 }
 
-auto Domain::xmin() const { return m_xmin; }
+double Domain::xmin() const { return m_xmin; }
 
-auto Domain::ymin() const { return m_ymin; }
+double Domain::ymin() const { return m_ymin; }
 
-auto Domain::xdim(int depth) const { return m_xdim[depth]; }
+double Domain::xdim(int depth) const { return m_xdim[depth]; }
 
-auto Domain::ydim(int depth) const { return m_ydim[depth]; }
+double Domain::ydim(int depth) const { return m_ydim[depth]; }
 
-const auto& Domain::x() const { return m_x; }
+const std::vector<double> &Domain::x() const { return m_x; }
 
-const auto& Domain::y() const { return m_y; }
+const std::vector<double> &Domain::y() const { return m_y; }
 
 } // namespace point_quadtree
