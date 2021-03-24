@@ -6,7 +6,8 @@ CXX_FLAGS += -O3 -ffast-math # non-debug version.
 CXX_FLAGS += -I./ # include paths.
 
 SRCS = example.cc \
-    point_quadtree/point.cc
+    point_quadtree/point.cc \
+    point_quadtree/box.cc
 
 %.o: %.cc; $(CXX) $(CXX_FLAGS) -o $@ -c $<
 
