@@ -2,6 +2,7 @@
 #include "config.hh"
 #include "fileio.hh"
 #include "point_quadtree/point_quadtree.hh"
+#include "point_quadtree/box_maker.hh"
 
 #include <filesystem>
 #include <iostream>
@@ -50,26 +51,11 @@ int main(int argc, const char** argv)
 
     point_quadtree::validate(root);
 
-    /*
-    std::cout << "\nquadtree stats:\n";
-    const auto &segments = make_segments(x, y, initial_tour);
-    auto quadtree = segment_quadtree::SegmentQuadtree(segments);
-    std::cout << "Finished quadtree in " << timer.stop() / 1e9 << " seconds.\n\n";
-
-    quadtree.validate();
-
-    int intersections{0};
-    int i{0};
-    for (const auto& segment : segments) {
-        // segment in the set should not 'intersect'.
-        if (quadtree.intersects(segment)) {
-            ++intersections;
-        }
-        std::cout << i << std::endl;
-        ++i;
+    point_quadtree::BoxMaker box_maker(x, y);
+    for (int i{0}; i < int(x.size()); ++i) {
+        constexpr double RADIUS{10};
+        std::cout << i << ", " << root.get_points(i, box_maker(i, RADIUS)).size() << std::endl;
     }
-    std::cout << "Found " << intersections << " segments that intersect with others of " << segments.size() << " total." << std::endl;
-    */
 
     return EXIT_SUCCESS;
 }

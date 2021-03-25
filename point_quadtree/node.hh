@@ -13,9 +13,9 @@ namespace point_quadtree {
 
 class Node {
 public:
-    Node(const Box&);
+    Node(const Box &);
 
-    Node* create_child(int, const Box& box);
+    Node* create_child(int, const Box &box);
     const std::array<std::unique_ptr<Node>, 4>& children() const { return m_children; }
     Node* child(int q) { return m_children[q].get(); }
 
@@ -25,7 +25,7 @@ public:
     size_t size() const { return m_points.size(); }
 
     // TODO: consider making this non-member.
-    std::vector<int> get_points (int i, const Box& search_box) const;
+    std::vector<int> get_points (int i, const Box &search_box) const;
 
     const auto& box() const { return m_box; }
     bool leaf() const;
