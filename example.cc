@@ -1,6 +1,7 @@
 #include "nano_timer.hh"
 #include "config.hh"
 #include "fileio.hh"
+#include "point_quadtree/point_quadtree.hh"
 
 #include <filesystem>
 #include <iostream>
@@ -31,6 +32,23 @@ int main(int argc, const char** argv)
     // Make quad tree.
     NanoTimer timer;
     timer.start();
+
+    // Initial tour length calculation.
+    point_quadtree::Domain domain(x, y);
+    std::cout << "domain aspect ratio: " << domain.xdim(0) / domain.ydim(0) << std::endl;
+    std::cout << "bounding x, y dim: "
+        << domain.xdim(0) << ", " << domain.ydim(0)
+        << std::endl;
+
+    std::cout << "\nquadtree stats:\n";
+    const auto root{point_quadtree::make_quadtree(x, y, domain)};
+    std::cout << "node ratio: "
+        << static_cast<double>(point_quadtree::count_nodes(root))
+            / point_quadtree::count_points(root)
+        << std::endl;
+    std::cout << "Finished quadtree in " << timer.stop() / 1e9 << " seconds.\n\n";
+
+    point_quadtree::validate(root);
 
     /*
     std::cout << "\nquadtree stats:\n";
